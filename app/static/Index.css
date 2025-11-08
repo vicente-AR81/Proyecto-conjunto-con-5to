@@ -3,3 +3,56 @@
     font-weight: 400;
     font-style: normal;
   }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .container {
+    display: grid;
+    grid-template-columns: repeat(2, 200px);
+    grid-gap: 40px;
+  }
+  
+  .card {
+    background-color: #2e2e2e;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  }
+  
+  .image {
+    width: 160px;
+    height: 90px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    opacity: 0.85;
+  }
+  
+  p {
+    color: white;
+    font-weight: 600;
+    margin-top: 15px;
+    text-transform: lowercase;
+    font-size: 18px;
+  }
+  

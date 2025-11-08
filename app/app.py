@@ -77,6 +77,21 @@ def home():
         return redirect(url_for('login'))
     return render_template('Index.html', nombre=session.get('nombre'))
 
+@app.route('/stock')
+def stock():
+    return render_template('Stock.html')
+
+@app.route('/proveedores')
+def proveedores():
+    return render_template('Proveedores.html')
+
+@app.route('/ventas')
+def ventas():
+    return render_template('Ventas.html')
+
+@app.route('/gastos')
+def gastos():
+    return render_template('Gastos.html')
 
 with app.app_context():
     db.create_all()
