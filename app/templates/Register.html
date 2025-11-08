@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/Register.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Mensajes de flash (contraseña desguial) o mail ya existe -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul class="flashes">
+      {% for category, message in messages %}
+        <li class="{{ category }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+    <div class="container">
+        <h1>Registrate aquí</h1>
+        <form action="{{ url_for('register') }}" method="POST">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="text" name="nombre" placeholder="Nombre del usuario" required>
+            <input type="password" name="password" placeholder="Contraseña" required>
+            <input type="password" name="confirm_password" placeholder="Confirmar Contraseña" required>
+            <input type="text" name="cargo" placeholder="Cargo" required>
+            <button type="submit">Registrarse</button>
+        </form>
+        <p>¿Tenés una cuenta ya? <a href="{{ url_for('login') }}">Inicia sesión</a></p>
+    </div>
+</body>
+</html>
