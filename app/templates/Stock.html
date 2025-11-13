@@ -1,11 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Stock</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='Stock.css') }}">
 </head>
 <body>
-    <h1>Gastos</h1>
+  <div class="container">
+    <h1>Lotes de stock</h1>
+    <a href="{{ url_for('agregar_stock') }}" class="btn-crear">+ Crear</a>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Stock</th>
+          <th>Precio (USD)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in productos %}
+        <tr>
+          <td>{{ p.id }}</td>
+          <td>{{ p.nombre }}</td>
+          <td>{{ p.descripcion }}</td>
+          <td>{{ p.stock }}</td>
+          <td>{{ "%.2f"|format(p.precio) }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 </body>
 </html>

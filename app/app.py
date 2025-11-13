@@ -19,6 +19,13 @@ class Usuario(db.Model):
     contraseña = db.Column(db.String(255), unique=True, nullable=False)
     cargo = db.Column(db.String(20), nullable=False)
 
+class Producto(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(100), nullable=False)
+    descripcion = db.Column(db.String(255), nullable=False)
+    stock = db.Column(db.Integer, nullable=False)
+    precio = db.Column(db.Float, nullable=False)
+
 @app.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -79,7 +86,23 @@ def home():
 
 @app.route('/stock')
 def stock():
-    return render_template('Stock.html')
+    productos = Producto.query.all()
+    return render_template('Stock.html', productos=productos)
+
+@app.route('/agregar_stock', methods=['GET', 'POST'])
+def agregar_stock():
+    if request.method == 'POST':
+        nombre = request.form['nombre']
+        descripcion = request.form['descripcion']
+        stock = request.form['stock']
+        precio = request.form['precio']
+
+        nuevo = Producto(nombre=nombre, descripcion=descripcion, stock=stock, precio=precio)
+        db.session.add(nuevo)
+        db.session.commit()
+        return redirect(url_for('stock'))
+
+    return render_template('Formulario_Stock.html')
 
 @app.route('/proveedores')
 def proveedores():

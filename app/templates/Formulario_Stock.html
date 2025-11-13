@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Agregar Producto</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='Formulario_Stock.css') }}">
+</head>
+<body>
+  <div class="form-container">
+    <h2>Agregar nuevo producto</h2>
+    <form method="POST">
+      <label>Nombre:</label>
+      <input type="text" name="nombre" required>
+
+      <label>Descripción:</label>
+      <input type="text" name="descripcion" required>
+
+      <label>Stock:</label>
+      <input type="number" name="stock" required>
+
+      <label>Precio (USD):</label>
+      <input type="number" name="precio" step="0.01" required>
+
+      <button type="submit">Guardar</button>
+      <a href="{{ url_for('stock') }}" class="volver">Volver</a>
+    </form>
+  </div>
+</body>
+</html>
