@@ -9,7 +9,7 @@ from datetime import datetime
 app = Flask(__name__)
 app.secret_key = 'SECRET_KEY'
 
-UPLOAD_FOLDER = os.path.join('../app/static', 'uploads')
+UPLOAD_FOLDER = os.path.join(app.root_path, 'static', 'uploads')
 
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
@@ -148,21 +148,19 @@ def agregar_venta():
     if request.method == 'POST':
         titulo = request.form['titulo']
 
-        # Guardar imagen
         imagen_file = request.files.get('imagen')
         imagen_path = None
 
         if imagen_file and imagen_file.filename != "":
             filename = secure_filename(imagen_file.filename)
 
-            # Guardamos el archivo físico
+            # Ruta física donde se guarda
             ruta_archivo = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             imagen_file.save(ruta_archivo)
 
-            # Guardamos SOLO la ruta relativa para el HTML
+            # Ruta relativa para mostrar en HTML
             imagen_path = f"uploads/{filename}"
 
-        # Crear venta
         venta = Venta(
             titulo=titulo,
             imagen=imagen_path
