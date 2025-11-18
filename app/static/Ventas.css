@@ -1,0 +1,47 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f5f6fa;
+    margin: 0;
+    padding: 40px;
+  }
+  
+  .container, .form-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  
+  h1, h2, h3 {
+    margin-bottom: 20px;
+  }
+  
+  .btn-crear {
+    background: #28a745;
+    color: white;
+    padding: 8px 14px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .volver {
+    display: block;
+    margin-top: 15px;
+    text-align: center;
+    color: #007bff;
+  }
+  

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar venta</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='ventas.css') }}">
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Registrar nueva venta</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        <label>Título de la venta:</label>
+        <input type="text" name="titulo" required>
+
+        <label>Comprobante (imagen):</label>
+        <input type="file" name="imagen" accept="image/*">
+
+        <h3>Seleccionar productos</h3>
+
+        <table>
+            <tr>
+                <th>Producto</th>
+                <th>Stock</th>
+                <th>Cantidad a vender</th>
+            </tr>
+
+            {% for p in productos %}
+            <tr>
+                <td>{{ p.nombre }}</td>
+                <td>{{ p.stock }}</td>
+                <td>
+                    <input type="number" name="cantidad_{{ p.id }}" min="0" max="{{ p.stock }}">
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <button type="submit">Registrar venta</button>
+        <a href="{{ url_for('ventas') }}" class="volver">Volver</a>
+    </form>
+</div>
+
+</body>
+</html>

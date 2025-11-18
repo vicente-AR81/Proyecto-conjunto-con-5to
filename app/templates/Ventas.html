@@ -1,11 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ventas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='ventas.css') }}">
 </head>
 <body>
-    <h1>Gastos</h1>
+
+<div class="container">
+    <h1>Ventas realizadas</h1>
+
+    <a href="{{ url_for('agregar_venta') }}" class="btn-crear">+ Registrar venta</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Fecha</th>
+                <th>Productos</th>
+                <th>Comprobante</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for v in ventas %}
+            <tr>
+                <td>{{ v.id }}</td>
+                <td>{{ v.titulo }}</td>
+                <td>{{ v.fecha.strftime("%d/%m/%Y %H:%M") }}</td>
+                <td>
+                    <ul>
+                        {% for item in v.items %}
+                        <li>{{ item.producto.nombre }} (x{{ item.cantidad }})</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    {% if v.imagen %}
+                    <img src="/{{ v.imagen }}" width="80">
+                    {% else %}
+                    Sin imagen
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
 </body>
 </html>
