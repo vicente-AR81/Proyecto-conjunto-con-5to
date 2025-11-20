@@ -1,11 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Proveedores</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='proveedores.css') }}">
 </head>
 <body>
-    <h1>Proveedores</h1>
+
+<div class="container">
+
+    <h2>Lista de Proveedores</h2>
+
+    <div class="lista">
+        {% for p in proveedores %}
+        <div class="proveedor-card">
+            <div class="info">
+                <h3>{{ p.nombre }}</h3>
+                <p>{{ p.descripcion }}</p>
+                <small>{{ p.numero }}</small>
+            </div>
+
+            <a class="btn-contactar" 
+               href="https://wa.me/{{ p.numero | replace(' ', '') }}" 
+               target="_blank">
+               Contactar
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
+
+    <h3>Agregar nuevo proveedor</h3>
+
+    <form method="POST" class="formulario">
+        <label>Nombre:</label>
+        <input type="text" name="nombre" required>
+
+        <label>Número (formato internacional):</label>
+        <input type="text" name="numero" placeholder="+54351XXXXXXX" required>
+
+        <label>Descripción:</label>
+        <input type="text" name="descripcion">
+
+        <button type="submit">Guardar proveedor</button>
+    </form>
+
+</div>
+
 </body>
 </html>

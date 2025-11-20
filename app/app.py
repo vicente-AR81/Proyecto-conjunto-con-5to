@@ -53,6 +53,13 @@ class VentaItem(db.Model):
 
     producto = db.relationship("Producto")
 
+class Proveedor(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(120), nullable=False)
+    numero = db.Column(db.String(50), nullable=False)
+    descripcion = db.Column(db.String(200))
+
+
 @app.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -131,9 +138,27 @@ def agregar_stock():
 
     return render_template('Formulario_Stock.html')
 
-@app.route('/proveedores')
+@app.route('/proveedores', methods=['GET', 'POST'])
 def proveedores():
-    return render_template('Proveedores.html')
+    if request.method == 'POST':
+        nombre = request.form["nombre"]
+        numero = request.form["numero"]
+        descripcion = request.form["descripcion"]
+
+        proveedor = Proveedor(
+            nombre=nombre,
+            numero=numero,
+            descripcion=descripcion
+        )
+
+        db.session.add(proveedor)
+        db.session.commit()
+
+        return redirect(url_for('proveedores'))
+
+    lista = Proveedor.query.all()
+    return render_template("Proveedores.html", proveedores=lista)
+
 
 @app.route('/ventas')
 def ventas():
