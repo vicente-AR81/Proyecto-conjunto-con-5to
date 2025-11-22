@@ -9,7 +9,7 @@
 
 <div class="container">
     <h1>Ventas realizadas</h1>
-
+    <a href="{{ url_for('graficos_ventas') }}" class="btn-crear">Graficos</a>
     <a href="{{ url_for('agregar_venta') }}" class="btn-crear">+ Registrar venta</a>
 
     <table>
@@ -20,6 +20,7 @@
                 <th>Fecha</th>
                 <th>Productos</th>
                 <th>Comprobante</th>
+                <th>Total</th>
             </tr>
         </thead>
 
@@ -43,6 +44,7 @@
                     Sin imagen
                     {% endif %}
                 </td>
+                <td>${{ "%.2f"|format(v.total) }}</td>
             </tr>
             {% endfor %}
         </tbody>

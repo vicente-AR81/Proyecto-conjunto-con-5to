@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template, request, redirect, url_for, session, flash, current_app, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import extract, func
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 from datetime import datetime
@@ -40,6 +41,7 @@ class Venta(db.Model):
     titulo = db.Column(db.String(150), nullable=False)
     fecha = db.Column(db.DateTime, default=datetime.utcnow)
     imagen = db.Column(db.String(255), nullable=True)
+    total = db.Column(db.Float, nullable=False, default=0)
 
     items = db.relationship("VentaItem", backref="venta", cascade="all, delete-orphan")
 
@@ -163,7 +165,29 @@ def proveedores():
 @app.route('/ventas')
 def ventas():
     ventas = Venta.query.all()
-    return render_template('Ventas.html', ventas=ventas)
+
+    # Calcular el total vendido por mes
+    ventas_por_mes = (
+        db.session.query(
+            extract('month', Venta.fecha).label('mes'),
+            func.sum(VentaItem.cantidad * VentaItem.precio_unitario).label('total')
+        )
+        .join(VentaItem, Venta.id == VentaItem.venta_id)
+        .group_by('mes')
+        .order_by('mes')
+        .all()
+    )
+
+    # Convertir a listas para Chart.js
+    meses = [int(v.mes) for v in ventas_por_mes]
+    totales = [float(v.total) for v in ventas_por_mes]
+
+    return render_template(
+        'Ventas.html',
+        ventas=ventas,
+        meses=meses,
+        totales=totales
+    )
 
 
 @app.route('/agregar_venta', methods=['GET', 'POST'])
@@ -173,31 +197,35 @@ def agregar_venta():
     if request.method == 'POST':
         titulo = request.form['titulo']
 
+        # Guardar imagen
         imagen_file = request.files.get('imagen')
         imagen_path = None
 
         if imagen_file and imagen_file.filename != "":
             filename = secure_filename(imagen_file.filename)
-
-            # Ruta física donde se guarda
             ruta_archivo = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             imagen_file.save(ruta_archivo)
-
-            # Ruta relativa para mostrar en HTML
             imagen_path = f"uploads/{filename}"
 
+        # Crear venta inicial
         venta = Venta(
             titulo=titulo,
-            imagen=imagen_path
+            imagen=imagen_path,
+            total=0   # temporal, luego lo actualizamos
         )
         db.session.add(venta)
         db.session.commit()
 
         # Registrar productos vendidos
+        total_venta = 0
+
         for p in productos:
             cantidad = request.form.get(f"cantidad_{p.id}")
             if cantidad and int(cantidad) > 0:
                 cantidad = int(cantidad)
+
+                subtotal = cantidad * p.precio
+                total_venta += subtotal
 
                 item = VentaItem(
                     venta_id=venta.id,
@@ -209,15 +237,31 @@ def agregar_venta():
 
                 p.stock -= cantidad
 
+        # Guardamos el total calculado
+        venta.total = total_venta
+
         db.session.commit()
         return redirect(url_for('ventas'))
 
     return render_template('Agregar_Venta.html', productos=productos)
 
+@app.route('/graficos_ventas')
+def graficos_ventas():
+    # Obtener todas las ventas con total
+    ventas = Venta.query.all()
 
-@app.route('/gastos')
-def gastos():
-    return render_template('Gastos.html')
+    # Generar labels y valores (mes → total vendido)
+    ventas_por_mes = {}
+
+    for v in ventas:
+        mes = v.fecha.strftime("%B")  # Ej: "January"
+        ventas_por_mes[mes] = ventas_por_mes.get(mes, 0) + v.total
+
+    labels = list(ventas_por_mes.keys())
+    valores = list(ventas_por_mes.values())
+
+    return render_template("Graficos_Ventas.html", labels=labels, valores=valores)
+
 
 with app.app_context():
     db.create_all()

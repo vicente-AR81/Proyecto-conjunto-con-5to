@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gráficos de Ventas</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Graficos.css') }}">
+</head>
+
+<body>
+
+<h2>Gráfico de ventas por mes</h2>
+
+<canvas id="graficoVentas"></canvas>
+
+<script>
+    const labels = {{ labels | tojson }};
+    const valores = {{ valores | tojson }};
+
+    new Chart(document.getElementById('graficoVentas'), {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Total vendido ($)',
+                data: valores,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            backgroundColor: 'rgba(75, 25, 192, 0.4)',
+            borderColor: 'rgba(0, 0, 0, 1)',
+            responsive: true,
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
