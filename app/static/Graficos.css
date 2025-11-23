@@ -1,67 +1,53 @@
-/* Tipografías */
+.momo-trust-display-regular {
+    font-family: "Momo Trust Display", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
 body {
-    font-family: 'Poppins', sans-serif;
-    background: #f5f6fa;
+    background: linear-gradient(135deg, #eef1f7, #f7f9fc);
     margin: 0;
     padding: 40px;
 }
 
-/* Contenedor principal */
-.container {
-    max-width: 1000px;
-    margin: 0 auto;
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-/* Títulos */
-h1, h2 {
+/* Título */
+h2 {
+    color: #222;
+    text-align: center;
+    font-size: 28px;
     margin-bottom: 20px;
-    color: #333;
 }
 
 /* Botón volver */
 .btn-volver {
     display: inline-block;
-    margin-top: 20px;
-    background: #007bff;
+    background: #a74128;
     color: white;
-    padding: 10px 16px;
+    padding: 10px 18px;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 10px;
     font-weight: bold;
+    margin: 0 auto;
+    transition: 0.3s;
+}
+
+.btn-volver:hover {
+    background: #8e341f;
 }
 
 /* Contenedor del gráfico */
 .chart-box {
-    margin-top: 30px;
+    max-width: 900px;
+    margin: 30px auto;
     padding: 25px;
-    background: #fff;
+    background: white;
     border-radius: 15px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
 }
 
-/* Tabla informativa opcional */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-th, td {
-    border-bottom: 1px solid #ddd;
-    text-align: left;
-    padding: 10px;
-}
-
-th {
-    background-color: #f2f2f2;
-}
-
+/* El canvas */
 canvas {
     margin-top: 20px;
     width: 100% !important;
-    max-height: 450px;
+    max-height: 460px;
 }

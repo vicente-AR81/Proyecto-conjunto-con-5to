@@ -1,11 +1,6 @@
-.momo-trust-display-regular {
-    font-family: "Momo Trust Display", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-  }
-
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Momo Trust Display", sans-serif;
+  font-style: normal;
   background: #f5f6fa;
   margin: 0;
   padding: 40px;
@@ -25,13 +20,22 @@ h1 {
 }
 
 .btn-crear {
-  background: #007bff;
+  background: #28a745;
   color: white;
   padding: 8px 14px;
   text-decoration: none;
   border-radius: 8px;
   font-weight: bold;
 }
+
+.btn-volver {
+    background: #a74128;
+    color: white;
+    padding: 8px 14px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+  }
 
 table {
   width: 100%;

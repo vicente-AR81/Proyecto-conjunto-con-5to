@@ -27,6 +27,15 @@ body {
     font-weight: bold;
   }
   
+   .btn-volver {
+    background: #a74128;
+    color: white;
+    padding: 8px 14px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+  }
+
   table {
     width: 100%;
     border-collapse: collapse;
@@ -39,9 +48,9 @@ body {
   }
   
   .volver {
-    display: block;
-    margin-top: 15px;
-    text-align: center;
-    color: #007bff;
-  }
-  
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  color: #007bff;
+  text-decoration: none;
+}

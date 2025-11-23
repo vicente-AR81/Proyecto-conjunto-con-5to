@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar proveedor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='proveedores.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h2>Registrar nuevo proveedor</h2>
+
+    <form method="POST" class="formulario">
+        <label>Nombre:</label>
+        <input type="text" name="nombre" required>
+
+        <label>Número (formato internacional):</label>
+        <input type="text" name="numero" placeholder="+54351XXXXXXX" required>
+
+        <label>Descripción:</label>
+        <input type="text" name="descripcion">
+
+        <button type="submit">Guardar proveedor</button>
+
+        <a href="{{ url_for('proveedores') }}" class="volver">Volver</a>
+    </form>
+        
+</div>
+
+</body>
+</html>

@@ -1,12 +1,18 @@
-/* ===== GENERAL ===== */
+.momo-trust-display-regular {
+    font-family: "Momo Trust Display", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Momo Trust Display", sans-serif;
+    font-weight: 400;
+    font-style: normal;
     background: #f2f4f7;
     margin: 0;
     padding: 0;
 }
 
-/* ===== FORM CONTAINER ===== */
 .form-container {
     width: 600px;
     background: white;
@@ -53,7 +59,7 @@ table {
 }
 
 table th {
-    background: #007bff;
+    background: #66727f;
     color: white;
     padding: 10px;
 }

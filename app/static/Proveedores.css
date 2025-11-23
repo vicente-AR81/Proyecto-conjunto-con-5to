@@ -11,12 +11,20 @@ body {
     padding: 20px;
 }
 
-h2, h3 {
+h2 {
     color: #222;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* NUEVO: separa los botones del título */
+.top-buttons {
+    margin-bottom: 25px;
+    display: flex;
+    gap: 10px;
 }
 
 .lista {
+    margin-top: 20px; /* separa las cards de los botones */
     margin-bottom: 30px;
 }
 
@@ -71,7 +79,7 @@ input {
 }
 
 button {
-    background: #007bff;
+    background: #28a745;
     color: white;
     padding: 10px;
     border-radius: 8px;
@@ -80,5 +88,31 @@ button {
 }
 
 button:hover {
-    background: #005fcc;
+    background: #218838;
+}
+
+.btn-crear {
+    background: #28a745;
+    color: white;
+    padding: 8px 14px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.btn-volver {
+    background: #a74128;
+    color: white;
+    padding: 8px 14px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.volver {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    color: #007bff;
+    text-decoration: none;
 }

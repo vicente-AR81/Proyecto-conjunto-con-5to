@@ -44,7 +44,7 @@ input {
 }
 
 button {
-  background: #007bff;
+  background: #28a745;
   color: white;
   border: none;
   padding: 10px;
@@ -54,7 +54,7 @@ button {
 }
 
 button:hover {
-  background: #0056b3;
+  background: #218838;
 }
 
 .volver {

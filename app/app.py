@@ -5,6 +5,9 @@ from sqlalchemy import extract, func
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 from datetime import datetime
+import locale
+locale.setlocale(locale.LC_TIME, "es_ES.UTF-8")  # Español
+
 
 #Conectar uri de base de datos, sino no funciona
 app = Flask(__name__)
@@ -140,8 +143,14 @@ def agregar_stock():
 
     return render_template('Formulario_Stock.html')
 
-@app.route('/proveedores', methods=['GET', 'POST'])
+@app.route('/proveedores')
 def proveedores():
+    lista = Proveedor.query.all()
+    return render_template("proveedores.html", proveedores=lista)
+
+
+@app.route('/registrar_proveedor', methods=['GET', 'POST'])
+def registrar_proveedor():
     if request.method == 'POST':
         nombre = request.form["nombre"]
         numero = request.form["numero"]
@@ -158,8 +167,7 @@ def proveedores():
 
         return redirect(url_for('proveedores'))
 
-    lista = Proveedor.query.all()
-    return render_template("Proveedores.html", proveedores=lista)
+    return render_template("registrar_proveedor.html")
 
 
 @app.route('/ventas')
@@ -250,11 +258,11 @@ def graficos_ventas():
     # Obtener todas las ventas con total
     ventas = Venta.query.all()
 
-    # Generar labels y valores (mes → total vendido)
+    # Generar labels y valores (mes + total vendido)
     ventas_por_mes = {}
 
     for v in ventas:
-        mes = v.fecha.strftime("%B")  # Ej: "January"
+        mes = v.fecha.strftime("%B").capitalize()
         ventas_por_mes[mes] = ventas_por_mes.get(mes, 0) + v.total
 
     labels = list(ventas_por_mes.keys())

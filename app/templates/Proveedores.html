@@ -11,6 +11,11 @@
 
     <h2>Lista de Proveedores</h2>
 
+    <div class="botones-superior">
+        <a href="{{ url_for('registrar_proveedor') }}" class="btn-crear">+ Registrar Contacto</a>
+        <a href="{{ url_for('home') }}" class="btn-volver">Volver</a>
+    </div>
+
     <div class="lista">
         {% for p in proveedores %}
         <div class="proveedor-card">
@@ -28,22 +33,6 @@
         </div>
         {% endfor %}
     </div>
-
-
-    <h3>Agregar nuevo proveedor</h3>
-
-    <form method="POST" class="formulario">
-        <label>Nombre:</label>
-        <input type="text" name="nombre" required>
-
-        <label>Número (formato internacional):</label>
-        <input type="text" name="numero" placeholder="+54351XXXXXXX" required>
-
-        <label>Descripción:</label>
-        <input type="text" name="descripcion">
-
-        <button type="submit">Guardar proveedor</button>
-    </form>
 
 </div>
 
