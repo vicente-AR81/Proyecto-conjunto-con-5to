@@ -4,8 +4,38 @@
   <meta charset="UTF-8">
   <title>Stock</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='Stock.css') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap" rel="stylesheet">
 </head>
 <body>
+
+<div class="navbar">
+    <div class="menu-icon" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="navbar-title">
+        Hola, {{ nombre }}
+    </div>
+  </div>
+
+  <!-- Desplegable -->
+  <div id="sideMenu" class="side-menu">
+    <div class="close-btn" onclick="toggleMenu()">&#10094;</div>
+
+    <h3>Kiosco</h3>
+    <ul>
+        <li onclick="location.href='/stock'">Stock</li>
+        <li onclick="location.href='/ventas'">Ventas</li>
+        <onclick="window.location.href='https://www.canva.com/design/DAG4BBQccnQ/zX91ELXYub6czq3iMTdOcQ/edit'">Gastos</li>
+        <li onclick="location.href='/proveedores'">Proveedores</li>
+        <li onclick="location.href='/graficos_ventas'">Grafico</li>
+    </ul>
+  </div>
+
   <div class="container">
     <h1>Lotes de stock</h1>
     <a href="{{ url_for('agregar_stock') }}" class="btn-crear">+ Crear</a>
@@ -18,7 +48,7 @@
           <th>Nombre</th>
           <th>Descripción</th>
           <th>Stock</th>
-          <th>Precio (USD)</th>
+          <th>Precio</th>
         </tr>
       </thead>
       <tbody>
@@ -34,5 +64,13 @@
       </tbody>
     </table>
   </div>
+
+<script>
+function toggleMenu() {
+    const menu = document.getElementById("sideMenu");
+    menu.style.left = (menu.style.left === "0px") ? "-500px" : "0px";
+}
+</script>
+
 </body>
 </html>

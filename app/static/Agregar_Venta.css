@@ -1,12 +1,5 @@
-.momo-trust-display-regular {
-    font-family: "Momo Trust Display", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
 body {
     font-family: "Momo Trust Display", sans-serif;
-    font-weight: 400;
     font-style: normal;
     background: #f2f4f7;
     margin: 0;
@@ -62,6 +55,7 @@ table th {
     background: #66727f;
     color: white;
     padding: 10px;
+    font-style: normal;
 }
 
 table td {

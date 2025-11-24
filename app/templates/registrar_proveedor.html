@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>Registrar proveedor</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='proveedores.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -21,7 +24,7 @@
         <label>Descripción:</label>
         <input type="text" name="descripcion">
 
-        <button type="submit">Guardar proveedor</button>
+        <button class="btn-crear" type="submit">Guardar proveedor</button>
 
         <a href="{{ url_for('proveedores') }}" class="volver">Volver</a>
     </form>

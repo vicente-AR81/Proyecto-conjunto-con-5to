@@ -13,6 +13,7 @@ body {
   padding: 30px;
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin-top: 4%;
 }
 
 h1 {
@@ -25,7 +26,7 @@ h1 {
   padding: 8px 14px;
   text-decoration: none;
   border-radius: 8px;
-  font-weight: bold;
+  font-weight: normal;
 }
 
 .btn-volver {
@@ -34,21 +35,108 @@ h1 {
     padding: 8px 14px;
     text-decoration: none;
     border-radius: 8px;
-    font-weight: bold;
+    font-weight: normal;
   }
 
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  font-weight: normal;
 }
 
 th, td {
   border-bottom: 1px solid #ddd;
   text-align: left;
   padding: 10px;
+  font-weight: normal;
 }
 
 th {
   background-color: #f2f2f2;
+}
+
+.navbar {
+    width: 100%;
+    height: 55px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.navbar-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    user-select: none;
+    padding-right: 5%;
+}
+
+.menu-icon {
+    width: 30px;
+    height: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.menu-icon span {
+    height: 4px;
+    width: 100%;
+    background: #333;
+    border-radius: 5px;
+}
+
+/* Side Menu */
+.side-menu {
+    width: 220px;
+    height: 100%;
+    background: #fff;
+    position: fixed;
+    top: 0;
+    left: -500px;
+    padding: 20px;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.15);
+    transition: 0.3s ease;
+    z-index: 15;
+}
+
+.side-menu h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.side-menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.side-menu li {
+    padding: 12px 5px;
+    font-size: 17px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.side-menu li:hover {
+    background: #f0f0f0;
+}
+
+.close-btn {
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    display: inline-block;
+}
+.close-btn:hover {
+    opacity: 0.7;
 }

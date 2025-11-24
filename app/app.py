@@ -141,12 +141,12 @@ def agregar_stock():
         db.session.commit()
         return redirect(url_for('stock'))
 
-    return render_template('Formulario_Stock.html')
+    return render_template('Formulario_Stock.html', nombre=session.get('nombre'))
 
 @app.route('/proveedores')
 def proveedores():
     lista = Proveedor.query.all()
-    return render_template("proveedores.html", proveedores=lista)
+    return render_template("proveedores.html", proveedores=lista, nombre=session.get('nombre'))
 
 
 @app.route('/registrar_proveedor', methods=['GET', 'POST'])
@@ -167,7 +167,7 @@ def registrar_proveedor():
 
         return redirect(url_for('proveedores'))
 
-    return render_template("registrar_proveedor.html")
+    return render_template("registrar_proveedor.html",nombre=session.get('nombre'))
 
 
 @app.route('/ventas')
@@ -194,7 +194,8 @@ def ventas():
         'Ventas.html',
         ventas=ventas,
         meses=meses,
-        totales=totales
+        totales=totales,
+        nombre=session.get('nombre')
     )
 
 
@@ -251,7 +252,7 @@ def agregar_venta():
         db.session.commit()
         return redirect(url_for('ventas'))
 
-    return render_template('Agregar_Venta.html', productos=productos)
+    return render_template('Agregar_Venta.html', productos=productos, nombre=session.get('nombre'))
 
 @app.route('/graficos_ventas')
 def graficos_ventas():
@@ -268,7 +269,7 @@ def graficos_ventas():
     labels = list(ventas_por_mes.keys())
     valores = list(ventas_por_mes.values())
 
-    return render_template("Graficos_Ventas.html", labels=labels, valores=valores)
+    return render_template("Graficos_Ventas.html", labels=labels, valores=valores, nombre=session.get('nombre'))
 
 
 with app.app_context():

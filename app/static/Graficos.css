@@ -5,6 +5,8 @@
 }
 
 body {
+    font-family: "Momo Trust Display", sans-serif;
+    font-style: normal;
     background: linear-gradient(135deg, #eef1f7, #f7f9fc);
     margin: 0;
     padding: 40px;
@@ -26,7 +28,7 @@ h2 {
     padding: 10px 18px;
     text-decoration: none;
     border-radius: 10px;
-    font-weight: bold;
+    font-weight: normal;
     margin: 0 auto;
     transition: 0.3s;
 }
